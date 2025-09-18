@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from django.http import HttpResponse,HttpResponseNotFound,HttpResponseRedirect
-from django.urls import reverse
+from django.http import Http404
+
 # Create your views here.
 
 posts = [
@@ -22,7 +22,10 @@ posts = [
     }
 ]
 
-
+categories = [
+    'software',
+    'hardware'
+]
 def home(request):
     '''
     html = ""
@@ -35,8 +38,9 @@ def home(request):
             </div>
         """
         '''
-    context = {'posts':posts}
-    return render(request , 'index.html' , context)
+    context = {'posts':posts , 'categories':categories}
+    
+    return render(request , 'index.html' , context )
 
 def single_post(request , id):
     valid_id = False
@@ -48,8 +52,5 @@ def single_post(request , id):
     if valid_id:
         return render(request , 'post.html' , context)
     else:
-        return HttpResponseNotFound("404 Not Found") 
+        raise Http404()
     
-def google(request , id):
-    url = reverse("post" , args=[id])
-    return HttpResponseRedirect(url)
