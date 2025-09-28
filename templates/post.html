@@ -1,11 +1,11 @@
 {% extends 'base.html'%}
-
+{% load humanize %}
 
 {% block content %}
 
 <div class="content d-flex flex-column">
     <img class="text-center" src="" />
-    <div class="h5 text-center text-body-secondary">25th January 2024</div>
+    <div class="h5 text-center text-body-secondary">{{post.created_at |naturalday}}</div>
 
     <h1 class="text-center fs-1 fw-bold my-3">{{post.title}}</h1>
     <div class="d-flex justify-content-center align-items-center flex-wrap ">
