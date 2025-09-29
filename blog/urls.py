@@ -22,3 +22,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('' , include("website.urls"))
 ]
+
+admin.site.site_header = 'Blog administration'
+admin.site.index_title = 'My blog'
